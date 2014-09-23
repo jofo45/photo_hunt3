@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
-  root to: "users#new"
+ devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
+ resources :items
+ root to: "items#index"
+
+
+#if the user signed up with Twitter, or perhaps for some reason the OAuth provider didn’t provide a verified email address, or maybe you just want to get some extra information from the user, then we need to implement an extra step for this.
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   # The priority is based upon order of creation: first created -> highest priority.

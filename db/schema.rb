@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921232321) do
+ActiveRecord::Schema.define(version: 20140923034242) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(version: 20140921232321) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.string   "classification"
+    t.string   "description"
+    t.string   "brand"
+    t.string   "url_link"
+    t.string   "product_id"
+    t.string   "image"
+    t.integer  "price_web"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "currently_active", default: true
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

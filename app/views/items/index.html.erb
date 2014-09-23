@@ -1,0 +1,15 @@
+this is the index for controller items
+
+<h1>All the items in the product database!</h1>
+<p><%= notice %></p>
+
+<h3><%= link_to "+ Add New Fashion Item", new_item_path %></h3>
+
+<%= form_tag items_path, method: "GET" do %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<br/>
+
+<%= render "item_list" %>
