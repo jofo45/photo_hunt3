@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
 #If you’re using the Devise confirmable module to verify email signups, then you may want to skip email confirmation here in order to avoid killing all the OAuth joy for the user. However, if you do want to force the user to confirm their email address then just comment out the current_user.skip_reconfirmation! line below. The real question is; do you trust Twitter users to provide you with a valid email address?
 
   # GET /users/:id.:format
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/:id.:format
   def update
-    # authorize! :update, @user
+    authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, :bypass => true)
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
 
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
-    # authorize! :update, @user 
+    # authorize! :update, @user
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
         @user.skip_reconfirmation!

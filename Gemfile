@@ -34,7 +34,7 @@ gem 'omniauth-twitter'
 
 #creates environment which can be used to store keys/secrets.
 gem "figaro"
-
+gem 'pry-rails'
 
 
 # gem 'instagram', :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
