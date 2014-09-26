@@ -5,6 +5,7 @@ Rails.application.routes.draw do
  resources :items
  resources :users
  root to: "items#index"
+ # get '/users/index', to: 'users#index'
 
 
 #if the user signed up with Twitter, or perhaps for some reason the OAuth provider didn’t provide a verified email address, or maybe you just want to get some extra information from the user, then we need to implement an extra step for this.

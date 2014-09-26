@@ -2,6 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
 #If you’re using the Devise confirmable module to verify email signups, then you may want to skip email confirmation here in order to avoid killing all the OAuth joy for the user. However, if you do want to force the user to confirm their email address then just comment out the current_user.skip_reconfirmation! line below. The real question is; do you trust Twitter users to provide you with a valid email address?
 
+
+
+  def index
+    # @items = Item.search_for(params[:q])
+     @users = User.all
+  end
+
   # GET /users/:id.:format
   def show
     # authorize! :read, @user
