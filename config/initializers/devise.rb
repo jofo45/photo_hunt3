@@ -9,7 +9,7 @@ Devise.setup do |config|
   # config.omniauth :facebook, "KEY", "SECRET"
   config.omniauth :twitter, ENV['twitter_api_key'], ENV['twitter_api_secret']
   # config.omniauth :linked_in, "KEY", "SECRET"
-  config.omniauth :instagram, ENV['instagram_client_id'], ENV['instagram_client_secret']
+  # config.omniauth :instagram, ENV['instagram_client_id'], ENV['instagram_client_secret']
 
 
 

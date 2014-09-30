@@ -31,17 +31,11 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-instagram'
 gem 'omniauth-twitter'
-gem 'instagram'
-
 
 #creates environment which can be used to store keys/secrets.
 gem "figaro"
+gem 'pry-rails'
 
-group :development do 
-	gem 'pry-rails'
-	gem 'binding_of_caller'
-	gem 'better_errors'
-end
 
 # gem 'instagram', :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
 # Use ActiveModel has_secure_password

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
-  devise :database_authenticatable, :registerable, #:confirmable,
+  devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
@@ -53,18 +53,12 @@ class User < ActiveRecord::Base
 
       # Create the user if it's a new registration
       if user.nil?
-        if auth.provider == 'twitter'
-          user = User.new(
-            name: auth.extra.raw_info.name,
-            username: auth.info.nickname || auth.uid,
-            email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-            password: Devise.friendly_token[0,20]
-          )
-        # elsif auth.provider == 'instagram'
-        #   user = User.new(
-        #     name: auth.info.name,
-        #  )
-        end
+        user = User.new(
+          name: auth.extra.raw_info.name,
+          # username: auth.info.nickname || auth.uid,
+          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          password: Devise.friendly_token[0,20]
+        )
         user.skip_confirmation!
         user.save!
       end
