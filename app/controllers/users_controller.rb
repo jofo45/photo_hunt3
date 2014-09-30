@@ -47,6 +47,7 @@ class UsersController < ApplicationController
       end
     end
   end
+  
 
   # DELETE /users/:id.:format
   def destroy
