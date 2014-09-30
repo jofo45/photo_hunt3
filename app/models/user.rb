@@ -70,9 +70,9 @@ class User < ActiveRecord::Base
           # user_thumbnail = auth.info.image
           password: Devise.friendly_token[0,20]
         )
-          user.pull_instagram_user_data
+          binding.pry
         end
-        user.skip_confirmation!
+        # user.skip_confirmation!
         user.save!
       end
     end
@@ -88,13 +88,5 @@ class User < ActiveRecord::Base
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
-
-  def pull_instagram_user_data
-    require 'json'
-    require 'rest-client' 
-    instagram_api_response = JSON.load(RestClient.get('https://api.instagram.com/v1/users/1574083/?access_token=ACCESS-TOKEN'))
-    binding.pry
-  end
-
 
 end
