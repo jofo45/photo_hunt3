@@ -43,6 +43,9 @@ group :development do
 	gem 'better_errors'
 end
 
+gem  'httparty'
+
+
 # gem 'instagram', :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

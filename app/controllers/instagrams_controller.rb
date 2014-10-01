@@ -1,5 +1,26 @@
 class InstagramsController < ApplicationController
 
+
+
+def user_instagram_feed 
+	#the_data = HTTParty.get(“https://api.instagram.com/v1/tags/#{hashtag}/media/recent?client_id=#{INSTAGRAM_CLIENT_ID}”)
+ 
+	user_instagram_feed = HTTParty.get(https://api.instagram.com/v1/users/self/feed?access_token=#{auth.uid})
+
+	return user_instagram_feed[“data”]
+end
+
+def show 
+	#the_data = HTTParty.get(“https://api.instagram.com/v1/tags/#{hashtag}/media/recent?client_id=#{INSTAGRAM_CLIENT_ID}”)
+ 
+	user_instagram_feed = HTTParty.get(https://api.instagram.com/v1/users/self/feed?access_token=#{auth.uid})
+
+	return user_instagram_feed[“data”]
+end
+
+
+
+
 # # require 'json'
 # # require 'rest-client'
 
