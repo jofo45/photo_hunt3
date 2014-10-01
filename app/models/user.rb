@@ -73,7 +73,6 @@ class User < ActiveRecord::Base
           
 
         end
-        binding.pry
         # user.skip_confirmation!
         user.save!
       end
