@@ -63,16 +63,18 @@ class User < ActiveRecord::Base
             password: Devise.friendly_token[0,20]
           )
         elsif auth.provider == 'instagram'
-
-          user = User.new(
+            user = User.new(
           name: auth.info.name,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           # nickname: auth.info.nickname
           # user_thumbnail = auth.info.image
           password: Devise.friendly_token[0,20]
         )
+          
+
         end
-        user.skip_confirmation!
+        binding.pry
+        # user.skip_confirmation!
         user.save!
       end
     end
