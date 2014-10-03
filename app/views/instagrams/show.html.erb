@@ -1,0 +1,16 @@
+<h1>List of all your instagrams in the database</h1>
+
+<%= form_tag '/', method: :get do %>
+  <%= search_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<br/>
+    <% @users.each do |u| %>
+      <%= u.email %>
+  <p> Your name is <%= u.name %> </p> </br>
+  <p> Your email is <%= u.email %> </p> </br>
+  <p> Your id is <%= u.id %> </p> </br>
+    <%end%>
+<%= @users.count%>
+

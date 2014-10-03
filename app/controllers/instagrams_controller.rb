@@ -1,22 +1,35 @@
 class InstagramsController < ApplicationController
 
+#Instagram.methods       add binding.pry below in the action below and then enter the Instagram.method in the pry controller.
+
+
+
+
   def get_instagrams
     user = User.find_by_id(current_user)
     instagram_token = user.identities.find_by_provider('instagram').social_token
     instagram_user_id = user.identities.find_by_provider('instagram').uid
 
+
+    # binding.pry
     Instagram.configure do |config|
       config.client_id = ENV['instagram_client_id']
       config.access_token = instagram_token
     end
 
-    binding.pry
-    @photos = Instagram.user_recent_media(instagram_user_id.to_s)
+    photos = Instagram.user_recent_media(instagram_user_id.to_s)
+    photos = Instagram.photos
+    user_Data = Instagram.user_data
 
-    respond_to do |format|
-      format.html
-      format.json {render json: @photos}
-    end
+    @instagram_response= {:photos=> photos }
+
+
+
+# Changes the response if/when it is called by javascript vice html.
+    # respond_to do |format|
+    #   format.html
+      # format.json {render json: @photos}
+    # end
 
   end
 

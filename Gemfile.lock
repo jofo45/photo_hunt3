@@ -193,6 +193,7 @@ DEPENDENCIES
   omniauth
   omniauth-instagram
   omniauth-twitter
+  pry
   pry-rails
   rails (= 4.1.4)
   sass-rails (~> 4.0.3)
