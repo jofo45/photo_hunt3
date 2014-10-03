@@ -6,10 +6,14 @@ class InstagramsController < ApplicationController
 
 
   def get_instagrams
-    user = User.find_by_id(current_user)
+    User.all.each do |user|
+      if user.identities.find_by_provider('instagram').nil?
+        next
+      end
+
+    # user = User.find_by_id(current_user)
     instagram_token = user.identities.find_by_provider('instagram').social_token
     instagram_user_id = user.identities.find_by_provider('instagram').uid
-
 
     # binding.pry
     Instagram.configure do |config|
@@ -21,7 +25,37 @@ class InstagramsController < ApplicationController
     photos = Instagram.photos
     user_Data = Instagram.user_data
 
-    @instagram_response= {:photos=> photos }
+    tags = Instagram.post_tags 
+
+    Instagram.user_media_feed.each do |individ_post|
+
+      Post.create!({
+      link: individ_post.link, 
+      post: individ_post.type, 
+      created_time: individ_post.created_time, 
+      likes: individ_post.likes.count, 
+      post_id: individ_post.id, 
+      photo_standard_res: individ_post.images.standard_resolution.url
+      })
+
+    end
+
+
+
+
+
+      # Tastemaker.findby 
+
+      # tastemaker_id:  Instagram.user_media_feed.first.user.id
+      # tastemaker_full_name: Instagram.user_media_feed.first.user.full_name
+      # tastemaker_username = Instagram.user_media_feed.first.user.username
+      # tastemaker_profile_pic = Instagram.user_media_feed.first.user.profile_picture
+
+
+
+    # Tags.create(content:tags.content)
+
+    # @instagram_response= {:photos=> photos }
 
 
 

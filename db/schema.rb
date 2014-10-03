@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001033246) do
+ActiveRecord::Schema.define(version: 20141003041123) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20141001033246) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "currently_active", default: true
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "link"
+    t.string   "post"
+    t.string   "created_time"
+    t.integer  "likes"
+    t.string   "post_id"
+    t.string   "photo_standard_res"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
