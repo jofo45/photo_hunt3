@@ -1,4 +1,4 @@
-<h1>List of all your instagrams in the database</h1>
+<h1>List of all your instagram posts in the database</h1>
 
 <%= form_tag '/', method: :get do %>
   <%= search_field_tag :q, params[:q] %>
@@ -6,11 +6,21 @@
 <% end %>
 
 <br/>
-    <% @users.each do |u| %>
-      <%= u.email %>
-  <p> Your name is <%= u.name %> </p> </br>
-  <p> Your email is <%= u.email %> </p> </br>
-  <p> Your id is <%= u.id %> </p> </br>
+    <% @posts.each do |indiv_post| %>
+	<p> <%= indiv_post.link%> </p> </br>
+	<p> <%= indiv_post.post_type%> </p> </br>
+	<p> <%= indiv_post.instagram_post_created_time%> </p> </br>
+	<p> <%= indiv_post.likes%> </p> </br>
+	<p> <%= indiv_post.instagram_post_id%> </p> </br>
+	<p> <%= indiv_post.photo_standard_res%> </p> </br>
+	<p> <%= indiv_post.photo_low_res%> </p> </br>
+	<p> <%= indiv_post.photo_thumbnail_res%> </p> </br>
+	<p> <%= indiv_post.created_at%> </p> </br>
+	<p> <%= indiv_post.updated_at%> </p> </br>  
     <%end%>
-<%= @users.count%>
+<%= indiv_post.count%>
+
+
+
+
 

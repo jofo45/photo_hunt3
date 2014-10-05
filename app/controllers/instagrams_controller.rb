@@ -2,7 +2,10 @@ class InstagramsController < ApplicationController
 
 #Instagram.methods       add binding.pry below in the action below and then enter the Instagram.method in the pry controller.
 
-
+  def show
+    # authorize! :read, @user
+    @posts = Post.all 
+  end
 
 
   def get_instagrams
@@ -21,27 +24,23 @@ class InstagramsController < ApplicationController
       config.access_token = instagram_token
     end
 
-    photos = Instagram.user_recent_media(instagram_user_id.to_s)
-    photos = Instagram.photos
-    user_Data = Instagram.user_data
-
-    tags = Instagram.post_tags 
 
     Instagram.user_media_feed.each do |individ_post|
-
+      binding.pry
       Post.create!({
       link: individ_post.link, 
-      post: individ_post.type, 
-      created_time: individ_post.created_time, 
+      post_type: individ_post.type, 
+      instagram_post_created_time: individ_post.created_time, 
       likes: individ_post.likes.count, 
-      post_id: individ_post.id, 
-      photo_standard_res: individ_post.images.standard_resolution.url
-      })
-
+      instagram_post_id: individ_post.id, 
+      photo_standard_res: individ_post.images.standard_resolution.url,
+      photo_low_res: individ_post.images.photo_low_resolution.url,
+      photo_thumbnail_res: individ_post.images.thumbnail.url
+      })  
+      end
     end
-
-
-
+  end
+end
 
 
       # Tastemaker.findby 
@@ -57,6 +56,11 @@ class InstagramsController < ApplicationController
 
     # @instagram_response= {:photos=> photos }
 
+    # photos = Instagram.user_recent_media(instagram_user_id.to_s)
+    # photos = Instagram.photos
+    # user_Data = Instagram.user_data
+
+    # tags = Instagram.post_tags 
 
 
 # Changes the response if/when it is called by javascript vice html.
@@ -65,9 +69,9 @@ class InstagramsController < ApplicationController
       # format.json {render json: @photos}
     # end
 
-  end
+  # end
 
-end
+
 
 
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
  # get '/users/index', to: 'users#index'
 
  get "/get_instagram" => "instagrams#get_instagrams"
+ get "/show_instagram" => "instagrams#show"
 
 
 #if the user signed up with Twitter, or perhaps for some reason the OAuth provider didn’t provide a verified email address, or maybe you just want to get some extra information from the user, then we need to implement an extra step for this.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003041123) do
+ActiveRecord::Schema.define(version: 20141005004951) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -40,11 +40,13 @@ ActiveRecord::Schema.define(version: 20141003041123) do
 
   create_table "posts", force: true do |t|
     t.string   "link"
-    t.string   "post"
-    t.string   "created_time"
+    t.string   "post_type"
+    t.string   "instagram_post_created_time"
     t.integer  "likes"
-    t.string   "post_id"
+    t.string   "instagram_post_id"
     t.string   "photo_standard_res"
+    t.string   "photo_low_res"
+    t.string   "photo_thumbnail_res"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
