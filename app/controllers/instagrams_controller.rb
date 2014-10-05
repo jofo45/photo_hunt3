@@ -19,7 +19,6 @@ class InstagramsController < ApplicationController
     instagram_token = user.identities.find_by_provider('instagram').social_token
     instagram_user_id = user.identities.find_by_provider('instagram').uid
 
-    # binding.pry
     Instagram.configure do |config|
       config.client_id = ENV['instagram_client_id']
       config.access_token = instagram_token
@@ -27,21 +26,30 @@ class InstagramsController < ApplicationController
 
 
     Instagram.user_media_feed.each do |individ_post|
-      Post.create!({
-      link: individ_post.link, 
-      post_type: individ_post.type, 
-      instagram_post_created_time: individ_post.created_time, 
-      likes: individ_post.likes.count, 
-      instagram_post_id: individ_post.id, 
-      # photodata = individ_post.images
-      photo_standard_res: individ_post.images.standard_resolution.url,
-      photo_low_res: individ_post.images.low_resolution.url,
-      photo_thumbnail_res: individ_post.images.thumbnail.url,
-      })  
+      if Post.find_by(instagram_post_id: individ_post.id).nil?
+        Post.create!({
+        link: individ_post.link, 
+        post_type: individ_post.type, 
+        instagram_post_created_time: individ_post.created_time, 
+        likes: individ_post.likes.first.last, # the following code did not work, b/c count is method. individ_post.likes.count, 
+        instagram_post_id: individ_post.id, 
+        photo_standard_res: individ_post.images.standard_resolution.url,
+        photo_low_res: individ_post.images.low_resolution.url,
+        photo_thumbnail_res: individ_post.images.thumbnail.url,
+        })
+      else
+        post = Post.find_by(instagram_post_id: individ_post.id)
+        post.update(likes: individ_post.likes.first.last)
       end
+    end
     end
   end
 end
+
+
+
+
+
 
       # Tastemaker.findby 
 
