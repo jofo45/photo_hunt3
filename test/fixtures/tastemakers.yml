@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tastemaker_instagram_id: MyString
+  tastemaker_full_name: MyString
+  tastemaker_influence_score: 1
+
+two:
+  tastemaker_instagram_id: MyString
+  tastemaker_full_name: MyString
+  tastemaker_influence_score: 1

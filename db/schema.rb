@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005004951) do
+ActiveRecord::Schema.define(version: 20141005202751) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -47,6 +47,24 @@ ActiveRecord::Schema.define(version: 20141005004951) do
     t.string   "photo_standard_res"
     t.string   "photo_low_res"
     t.string   "photo_thumbnail_res"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tastemakers", force: true do |t|
+    t.integer  "tastemaker_instagram_id"
+    t.string   "tastemaker_instagram_full_name"
+    t.integer  "tastemaker_full_name"
+    t.integer  "tastemaker_instagram_username"
+    t.integer  "tastemaker_profile_pict"
+    t.integer  "tastemaker_counts_posts"
+    t.integer  "tastemaker_counts_follows"
+    t.integer  "tastemaker_counts_followed_by"
+    t.integer  "tastemaker_website"
+    t.integer  "tastemaker_bio"
+    t.integer  "tastemaker_influence_score"
+    t.boolean  "elite_tastemaker",               default: false
+    t.boolean  "fashion_tastemaker",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

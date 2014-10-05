@@ -1,7 +1,6 @@
 
 
 
-get_instagrams
 
 # def get_instagrams
 #     user = User.find_by_id(current_user)
