@@ -1,5 +1,8 @@
 
 
+
+get_instagrams
+
 # def get_instagrams
 #     user = User.find_by_id(current_user)
 #     instagram_token = user.identities.find_by_provider('instagram').social_token

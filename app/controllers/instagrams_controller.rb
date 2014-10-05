@@ -4,6 +4,7 @@ class InstagramsController < ApplicationController
 
   def show
     # authorize! :read, @user
+    get_instagrams
     @posts = Post.all 
   end
 
@@ -26,22 +27,21 @@ class InstagramsController < ApplicationController
 
 
     Instagram.user_media_feed.each do |individ_post|
-      binding.pry
       Post.create!({
       link: individ_post.link, 
       post_type: individ_post.type, 
       instagram_post_created_time: individ_post.created_time, 
       likes: individ_post.likes.count, 
       instagram_post_id: individ_post.id, 
+      # photodata = individ_post.images
       photo_standard_res: individ_post.images.standard_resolution.url,
-      photo_low_res: individ_post.images.photo_low_resolution.url,
-      photo_thumbnail_res: individ_post.images.thumbnail.url
+      photo_low_res: individ_post.images.low_resolution.url,
+      photo_thumbnail_res: individ_post.images.thumbnail.url,
       })  
       end
     end
   end
 end
-
 
       # Tastemaker.findby 
 
