@@ -12,12 +12,18 @@
 	<p> <%= indiv_post.instagram_post_created_time%> </p> </br>
 	<p> <%= "Number of likes #{indiv_post.likes}"%> </p> </br>
 	<p> <%= indiv_post.instagram_post_id%> </p> </br>
-	<p> <%= indiv_post.photo_standard_res%> </p> </br>
+	<p> <%= image_tag "#{indiv_post.photo_standard_res}"%> </p> </br>
 	<p> <%= indiv_post.photo_low_res%> </p> </br>
 	<p> <%= indiv_post.photo_thumbnail_res%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_profile_pict%> </p> </br>
 	<p> <%= indiv_post.created_at%> </p> </br>
-	<p> <%= indiv_post.updated_at%> </p> </br> </br> </br>
+	<p> <%= indiv_post.updated_at%> </p> </br>
     <%end%>
+
+
 <%= @posts.count%>
 
 

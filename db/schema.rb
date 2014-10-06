@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006011047) do
+ActiveRecord::Schema.define(version: 20141006023217) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -55,16 +55,16 @@ ActiveRecord::Schema.define(version: 20141006011047) do
   add_index "posts", ["tastemaker_id"], name: "index_posts_on_tastemaker_id"
 
   create_table "tastemakers", force: true do |t|
-    t.integer  "tastemaker_instagram_id"
+    t.string   "tastemaker_instagram_id"
     t.string   "tastemaker_instagram_full_name"
-    t.integer  "tastemaker_full_name"
-    t.integer  "tastemaker_instagram_username"
-    t.integer  "tastemaker_profile_pict"
+    t.string   "tastemaker_full_name"
+    t.string   "tastemaker_instagram_username"
+    t.string   "tastemaker_profile_pict"
     t.integer  "tastemaker_counts_posts"
     t.integer  "tastemaker_counts_follows"
     t.integer  "tastemaker_counts_followed_by"
-    t.integer  "tastemaker_website"
-    t.integer  "tastemaker_bio"
+    t.string   "tastemaker_website"
+    t.string   "tastemaker_bio"
     t.integer  "tastemaker_influence_score"
     t.boolean  "elite_tastemaker",               default: false
     t.boolean  "fashion_tastemaker",             default: false
