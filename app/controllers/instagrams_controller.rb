@@ -2,7 +2,7 @@ class InstagramsController < ApplicationController
 
 #Instagram.methods       add binding.pry below in the action below and then enter the Instagram.method in the pry controller.
 
-  def show
+  def index
     # authorize! :read, @user
     get_instagrams
     @posts = Post.all 

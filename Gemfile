@@ -52,7 +52,7 @@ gem  'httparty'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
-
+gem 'rails_layout'
 # gem 'instagram', :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
