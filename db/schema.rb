@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006183838) do
+ActiveRecord::Schema.define(version: 20141006185456) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20141006183838) do
   end
 
   add_index "posts", ["tastemaker_id"], name: "index_posts_on_tastemaker_id"
+
+  create_table "posts_tags", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  add_index "posts_tags", ["post_id", "tag_id"], name: "index_posts_tags_on_post_id_and_tag_id"
+  add_index "posts_tags", ["tag_id", "post_id"], name: "index_posts_tags_on_tag_id_and_post_id"
 
   create_table "tags", force: true do |t|
     t.string   "tag_name"

@@ -34,7 +34,6 @@ class InstagramsController < ApplicationController
           tastemaker_instagram_username: individ_post.user.username,
           tastemaker_profile_pict: individ_post.user.profile_picture 
           })
-        binding.pry
           #the below information must be added separately, perhaps by looking up the instagram ID and pulling the info.  B/c if you pull the "user" data, it pulls the data of the person loged in not the poster.
           # tastemaker_counts_posts: Instagram.user.counts.media
           # tastemaker_counts_follows: Instagram.user.counts.follows
@@ -59,12 +58,24 @@ class InstagramsController < ApplicationController
         photo_thumbnail_res: individ_post.images.thumbnail.url,
         })
         @post.save
+
+        individ_post.tags.each do |individ_tag|
+          @tag = @post.tags.create({
+            tag_name: individ_tag
+            })
+          #increase tag popularity if it comes from popular post
+          if @post[:likes] > 1000 || @post.tastemaker.tastemaker_influence_score >50
+            @tag[:popularity] *= 1.05
+          end
+
+        end
+
       else
-        post = Post.find_by(instagram_post_id: individ_post.id)
-        post.update(likes: individ_post.likes.first.last)
+        @post = Post.find_by(instagram_post_id: individ_post.id)
+        @post.update(likes: individ_post.likes.first.last)
       end
-    end
-    end
+     end
+  end
   end
 
 end
