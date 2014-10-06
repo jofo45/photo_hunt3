@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005202751) do
+ActiveRecord::Schema.define(version: 20141006011047) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -49,7 +49,10 @@ ActiveRecord::Schema.define(version: 20141005202751) do
     t.string   "photo_thumbnail_res"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tastemaker_id"
   end
+
+  add_index "posts", ["tastemaker_id"], name: "index_posts_on_tastemaker_id"
 
   create_table "tastemakers", force: true do |t|
     t.integer  "tastemaker_instagram_id"
