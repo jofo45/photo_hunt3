@@ -85,6 +85,11 @@ class User < ActiveRecord::Base
     user
   end
 
+  def index
+    @users = User.all
+  end
+
+
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
