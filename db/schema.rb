@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006183216) do
+ActiveRecord::Schema.define(version: 20141006183838) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 20141006183216) do
   create_table "tags", force: true do |t|
     t.string   "tag_name"
     t.string   "provider"
-    t.integer  "popularity"
-    t.integer  "fashion_score"
-    t.boolean  "elite_tag"
+    t.integer  "popularity",    default: 50
+    t.integer  "fashion_score", default: 50
+    t.boolean  "elite_tag",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
