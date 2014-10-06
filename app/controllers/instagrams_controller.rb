@@ -25,6 +25,7 @@ class InstagramsController < ApplicationController
     end
 
     Instagram.user_media_feed.each do |individ_post|
+      #also try to pull "liked media by the user"  Instagram.user_liked_media
 
       if Tastemaker.find_by(tastemaker_instagram_id: individ_post.user.id).nil?
         Tastemaker.create!({
@@ -33,6 +34,7 @@ class InstagramsController < ApplicationController
           tastemaker_instagram_username: individ_post.user.username,
           tastemaker_profile_pict: individ_post.user.profile_picture 
           })
+        binding.pry
           #the below information must be added separately, perhaps by looking up the instagram ID and pulling the info.  B/c if you pull the "user" data, it pulls the data of the person loged in not the poster.
           # tastemaker_counts_posts: Instagram.user.counts.media
           # tastemaker_counts_follows: Instagram.user.counts.follows
