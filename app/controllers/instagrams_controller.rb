@@ -25,9 +25,40 @@ class InstagramsController < ApplicationController
     end
 
 
+
+    t.string   "tastemaker_instagram_full_name"
+    t.integer  "tastemaker_full_name"
+    t.integer  "tastemaker_instagram_username"
+    t.integer  "tastemaker_profile_pict"
+    t.integer  "tastemaker_counts_posts"
+    t.integer  "tastemaker_counts_follows"
+    t.integer  "tastemaker_counts_followed_by"
+    t.integer  "tastemaker_website"
+    t.integer  "tastemaker_bio"
+    t.integer  "tastemaker_influence_score"
+    t.boolean  "elite_tastemaker",               default: false
+
+
+
     Instagram.user_media_feed.each do |individ_post|
+      if Tastemaker.find_by(tastemaker_instagram_id: individ_post.user.id).nil?
+        @tastemaker = Tastemaker.create({
+          tastemaker_instagram_id:  individ_post.user.id,
+          tastemaker_full_name: individ_post.user.full_name,
+          tastemaker_instagram_username: individ_post.user.username,
+          tastemaker_profile_pic: individ_post.user.profile_picture 
+          })
+          #the below information must be added separately, perhaps by looking up the instagram ID and pulling the info.  B/c if you pull the "user" data, it pulls the data of the person loged in not the poster.
+          # tastemaker_counts_posts: Instagram.user.counts.media
+          # tastemaker_counts_follows: Instagram.user.counts.follows
+          # tastemaker_counts_followed_by: Instagram.user.counts.followed_by
+          # tastemaker_website: Instagram.user.website
+          # tastemaker_influence_score: 
+      else
+      end
+
       if Post.find_by(instagram_post_id: individ_post.id).nil?
-        Post.create!({
+        @tastemaker.post.build({
         link: individ_post.link, 
         post_type: individ_post.type, 
         instagram_post_created_time: individ_post.created_time, 
@@ -44,7 +75,47 @@ class InstagramsController < ApplicationController
     end
     end
   end
+
 end
+
+
+
+
+
+
+  #   Instagram.user_media_feed.each do |individ_post|
+  #     if Post.find_by(instagram_post_id: individ_post.id).nil?
+  #       Post.create!({
+  #       link: individ_post.link, 
+  #       post_type: individ_post.type, 
+  #       instagram_post_created_time: individ_post.created_time, 
+  #       likes: individ_post.likes.first.last, # the following code did not work, b/c count is method. individ_post.likes.count, 
+  #       instagram_post_id: individ_post.id, 
+  #       photo_standard_res: individ_post.images.standard_resolution.url,
+  #       photo_low_res: individ_post.images.low_resolution.url,
+  #       photo_thumbnail_res: individ_post.images.thumbnail.url,
+
+  #       tastemaker_instagram_id:  individ_post.user.id,
+  #       tastemaker_full_name: individ_post.user.full_name,
+  #       tastemaker_username: individ_post.user.username,
+  #       tastemaker_profile_pic: individ_post.user.profile_picture
+
+  #       #the below information must be added separately, perhaps by looking up the instagram ID and pulling the info.  B/c if you pull the "user" data, it pulls the data of the person loged in not the poster.
+  #       # tastemaker_counts_posts: Instagram.user.counts.media
+  #       # tastemaker_counts_follows: Instagram.user.counts.follows
+  #       # tastemaker_counts_followed_by: Instagram.user.counts.followed_by
+  #       # tastemaker_website: Instagram.user.website
+  #       # tastemaker_influence_score: 
+
+  #       })
+  #     else
+  #       post = Post.find_by(instagram_post_id: individ_post.id)
+  #       post.update(likes: individ_post.likes.first.last)
+  #     end
+  #   end
+  #   end
+  # end
+
 
 
 
