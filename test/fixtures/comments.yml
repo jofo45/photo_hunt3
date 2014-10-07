@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instagram_created_time: MyString
+  text_field: MyString
+  comment_score: MyString
+  confirmed_comment: false
+
+two:
+  instagram_created_time: MyString
+  text_field: MyString
+  comment_score: MyString
+  confirmed_comment: false

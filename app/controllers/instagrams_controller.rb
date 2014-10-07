@@ -67,13 +67,13 @@ class InstagramsController < ApplicationController
           if @post[:likes] > 1000 || @post.tastemaker.tastemaker_influence_score >50
             @tag[:popularity] *= 1.05
           end
-
         end
 
       else
         @post = Post.find_by(instagram_post_id: individ_post.id)
         @post.update(likes: individ_post.likes.first.last)
       end
+binding.pry
      end
   end
   end

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006185456) do
+ActiveRecord::Schema.define(version: 20141006235958) do
+
+  create_table "comments", force: true do |t|
+    t.string   "instagram_created_time"
+    t.string   "source"
+    t.string   "text_field"
+    t.integer  "comment_score",          default: 50
+    t.boolean  "confirmed_comment",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
