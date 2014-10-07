@@ -8,6 +8,12 @@ class InstagramsController < ApplicationController
     @posts = Post.all 
   end
 
+  def show
+    # authorize! :read, @user
+    get_instagrams
+    @posts = Post.all 
+  end
+
 
   def get_instagrams
     User.all.each do |user|
@@ -59,21 +65,36 @@ class InstagramsController < ApplicationController
         })
         @post.save
 
+
+        individ_post.comments.data.each do |individ_comment|
+          @comment = @post.comments.create({
+          instagram_created_time: individ_comment.created_time,
+          source: "Instagram",
+          text_field: individ_comment.text
+          # comment_score:
+          # confirmed_comment:
+          })
+        end
+
+
         individ_post.tags.each do |individ_tag|
           @tag = @post.tags.create({
             tag_name: individ_tag
             })
           #increase tag popularity if it comes from popular post
-          if @post[:likes] > 1000 || @post.tastemaker.tastemaker_influence_score >50
-            @tag[:popularity] *= 1.05
-          end
+          # why isn't this working??
+
+          # if @post[:likes] > 1000 || @post.tastemaker.tastemaker_influence_score >50
+          #   @tag[:popularity] *= 1.05
+          # end
+          @tag[:popularity] *= 1.05 if @post.likes > 1000
         end
 
       else
         @post = Post.find_by(instagram_post_id: individ_post.id)
         @post.update(likes: individ_post.likes.first.last)
+        # binding.pry
       end
-binding.pry
      end
   end
   end

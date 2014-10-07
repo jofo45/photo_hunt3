@@ -1,6 +1,7 @@
 class Tastemaker < ActiveRecord::Base
 	has_many :posts
-
+  has_many :comments, through: :posts
+  
   # validates :title, :link, :category, :upvotes, presence: true
 
   # def self.popular
