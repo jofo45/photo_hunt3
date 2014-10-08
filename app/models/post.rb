@@ -3,5 +3,6 @@ class Post < ActiveRecord::Base
 	has_and_belongs_to_many :tags
 	has_many :comments
 	has_and_belongs_to_many :items
+	has_many :guesses
 
 end

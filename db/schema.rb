@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20141008204759) do
   add_index "comments", ["tastemaker_id"], name: "index_comments_on_tastemaker_id"
 
   create_table "guesses", force: true do |t|
+    t.integer  "user_confidence", default: 50
     t.integer  "guess_score",     default: 50
     t.boolean  "confirmed_guess", default: false
-    t.integer  "item"
+    t.string   "item"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
