@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007045939) do
+ActiveRecord::Schema.define(version: 20141007225300) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20141007045939) do
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+
+  create_table "comments_tastemakers", id: false, force: true do |t|
+    t.integer "comment_id"
+    t.integer "tastemaker_id"
+  end
+
+  add_index "comments_tastemakers", ["comment_id", "tastemaker_id"], name: "index_comments_tastemakers_on_comment_id_and_tastemaker_id"
+  add_index "comments_tastemakers", ["tastemaker_id", "comment_id"], name: "index_comments_tastemakers_on_tastemaker_id_and_comment_id"
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"

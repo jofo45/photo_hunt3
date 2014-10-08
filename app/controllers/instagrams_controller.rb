@@ -10,8 +10,13 @@ class InstagramsController < ApplicationController
 
   def show
     # authorize! :read, @user
-    get_instagrams
     @posts = Post.all 
+    @instagram = @posts.find(params[:id])
+    if @book.update(book_params)
+      redirect_to(@instagram)
+    else
+      render "edit"
+    end
   end
 
 
@@ -74,6 +79,8 @@ class InstagramsController < ApplicationController
           # comment_score:
           # confirmed_comment:
           })
+          individ_post.comments.data.first.from
+
         end
 
 

@@ -1,0 +1,33 @@
+<h1>List of all your instagram posts in the database</h1>
+
+<%= form_tag '/', method: :get do %>
+  <%= search_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<br/>
+    <% @posts.each do |indiv_post| %>
+	<p> <%= indiv_post.link%> </p> </br>
+	<p> <%= indiv_post.post_type%> </p> </br>
+	<p> <%= indiv_post.instagram_post_created_time%> </p> </br>
+	<p> <%= "Number of likes #{indiv_post.likes}"%> </p> </br>
+	<p> <%= indiv_post.instagram_post_id %> </p> </br>
+	<p> <%= image_tag "#{indiv_post.photo_low_res}" %></td></p>
+	<p> <%= image_tag "#{indiv_post.photo_standard_res}"%> </p> </br>
+	<p> <%= image_tag "#{indiv_post.photo_thumbnail_res}"%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p> </br>
+	<p> <%= indiv_post.tastemaker.tastemaker_profile_pict%> </p> </br>
+	<p> <%= indiv_post.created_at%> </p> </br>
+	<p> <%= indiv_post.updated_at%> </p> </br>
+    <%end%>
+
+<%= render partial: "post", collection: @posts %>
+
+<%= @posts.count%>
+
+
+
+
+
