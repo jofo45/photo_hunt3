@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008031137) do
+ActiveRecord::Schema.define(version: 20141008154835) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
+    t.string   "instagram_comment_id"
     t.string   "source"
     t.string   "text_field"
     t.integer  "comment_score",          default: 50
@@ -22,17 +23,11 @@ ActiveRecord::Schema.define(version: 20141008031137) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
+    t.integer  "tastemaker_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
-
-  create_table "comments_tastemakers", id: false, force: true do |t|
-    t.integer "comment_id"
-    t.integer "tastemaker_id"
-  end
-
-  add_index "comments_tastemakers", ["comment_id", "tastemaker_id"], name: "index_comments_tastemakers_on_comment_id_and_tastemaker_id"
-  add_index "comments_tastemakers", ["tastemaker_id", "comment_id"], name: "index_comments_tastemakers_on_tastemaker_id_and_comment_id"
+  add_index "comments", ["tastemaker_id"], name: "index_comments_on_tastemaker_id"
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -71,10 +66,8 @@ ActiveRecord::Schema.define(version: 20141008031137) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tastemaker_id"
-    t.integer  "item_id"
   end
 
-  add_index "posts", ["item_id"], name: "index_posts_on_item_id"
   add_index "posts", ["tastemaker_id"], name: "index_posts_on_tastemaker_id"
 
   create_table "posts_tags", id: false, force: true do |t|

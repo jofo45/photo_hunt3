@@ -1,6 +1,6 @@
 class Tastemaker < ActiveRecord::Base
 	has_many :posts
-  has_many :comments, through: :posts
+  has_many :comments
   
   # validates :title, :link, :category, :upvotes, presence: true
 

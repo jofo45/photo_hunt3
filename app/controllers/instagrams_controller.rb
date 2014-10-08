@@ -12,7 +12,8 @@ class InstagramsController < ApplicationController
     # authorize! :read, @user
     #@posts = Post.all 
     @post = Post.find(params[:id])
-    # @guesses = Guess.find_by(post_id: @post.id)
+    #@guesses = Guess.find_by(post_id: @post.id)
+    # @guess = Guess.new
     # if @book.update(book_params)
     #   redirect_to(@instagram)
     # else
@@ -55,62 +56,75 @@ class InstagramsController < ApplicationController
           # tastemaker_counts_followed_by: Instagram.user.counts.followed_by
           # tastemaker_website: Instagram.user.website
           # tastemaker_influence_score: 
-      else
       end
 
       if Post.find_by(instagram_post_id: individ_post.id).nil?
         @tastemaker = Tastemaker.find_by(tastemaker_instagram_id: individ_post.user.id)
-        # @tastemaker.posts.build
-        # @tastemaker.posts.create
         @post = @tastemaker.posts.new({
         link: individ_post.link, 
         post_type: individ_post.type, 
         instagram_post_created_time: individ_post.created_time, 
-        likes: individ_post.likes.first.last, # the following code did not work, b/c count is method. individ_post.likes.count, 
+        likes: individ_post.likes['count'], 
         instagram_post_id: individ_post.id, 
         photo_standard_res: individ_post.images.standard_resolution.url,
         photo_low_res: individ_post.images.low_resolution.url,
-        photo_thumbnail_res: individ_post.images.thumbnail.url,
+        photo_thumbnail_res: individ_post.images.thumbnail.url
+        # comment_count: individ_post.comments['count']
         })
         @post.save
-
-
-        individ_post.comments.data.each do |individ_comment|
-          @comment = @post.comments.create({
-          instagram_created_time: individ_comment.created_time,
-          source: "Instagram",
-          text_field: individ_comment.text
-          # comment_score:
-          # confirmed_comment:
-          })
-          binding.pry
-
-          individ_post.comments.data.first.from
-
-        end
-
-
         individ_post.tags.each do |individ_tag|
           @tag = @post.tags.create({
             tag_name: individ_tag
             })
           #increase tag popularity if it comes from popular post
           # why isn't this working??
-
           # if @post[:likes] > 1000 || @post.tastemaker.tastemaker_influence_score >50
           #   @tag[:popularity] *= 1.05
           # end
           @tag[:popularity] *= 1.05 if @post.likes > 1000
         end
-
       else
         @post = Post.find_by(instagram_post_id: individ_post.id)
-        @post.update(likes: individ_post.likes.first.last)
+        @post.update({
+          likes: individ_post.likes['count']
+          # comment_count: individ_post.comments['count']
+          })
       end
-     end
-  end
-  end
 
+
+    individ_post.comments.data.each do |individ_comment|
+      if Comment.find_by(instagram_comment_id: individ_comment.id).nil?
+        if Tastemaker.find_by(tastemaker_instagram_id: individ_comment.from.id).nil?
+        @commenttastemaker = Tastemaker.create!({
+          tastemaker_instagram_id:  individ_comment.from.id,
+          tastemaker_full_name: individ_comment.from.full_name,
+          tastemaker_instagram_username: individ_comment.from.username,
+          tastemaker_profile_pict: individ_comment.from.profile_picture 
+          })
+        end
+        postcommentbelongsto = Post.find_by(instagram_post_id: individ_post.id)
+        @comment = @commenttastemaker.comments.create({
+          instagram_created_time: individ_comment.created_time,
+          source: "Instagram",
+          text_field: individ_comment.text,
+          instagram_comment_id: individ_comment.id,
+          post_id: postcommentbelongsto.id
+          })
+      end
+    end
+
+
+          # @comment = @post.comments.create({
+          # instagram_created_time: individ_comment.created_time,
+          # source: "Instagram",
+          # text_field: individ_comment.text
+          # comment_score:
+          # confirmed_comment:
+          # })
+    
+  end
+  end
+  end
 end
 
 

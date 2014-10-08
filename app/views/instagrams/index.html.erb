@@ -7,7 +7,8 @@
 <% end %>
 
 
-<%#= render 'guesses/guess_box', guesses: @guesses %>
+<%#= render 'guesses/guess_box', guesses: indiv_post.guesses %>
+<%#= form_for indiv_post.guesses.build %>
 
 <br/>
 
@@ -27,11 +28,7 @@
     				<p> <%= indiv_post.tastemaker.tastemaker_profile_pict%> </p>
   				</div>
   				<div class = "row"> 
-    				<p> <%= "Number of likes #{indiv_post.likes}"%> </p>
-    				<p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p>
-    				<p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p>
-    				<p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p>
-    				<p> <%= indiv_post.tastemaker.tastemaker_profile_pict%> </p>
+            <%= render 'post'%> -->
   				</div>
     		</div>
     	</div>
