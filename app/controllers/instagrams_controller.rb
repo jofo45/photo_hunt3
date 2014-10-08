@@ -10,8 +10,9 @@ class InstagramsController < ApplicationController
 
   def show
     # authorize! :read, @user
-    @posts = Post.all 
-    @post = @posts.find(params[:id])
+    #@posts = Post.all 
+    @post = Post.find(params[:id])
+    # @guesses = Guess.find_by(post_id: @post.id)
     # if @book.update(book_params)
     #   redirect_to(@instagram)
     # else
@@ -21,19 +22,22 @@ class InstagramsController < ApplicationController
 
 
   def get_instagrams
+    # @importer = ImportInstagramUserFeed.new
+    # @importer.call
+
     User.all.each do |user|
       if user.identities.find_by_provider('instagram').nil?
         next
       end
 
-    # user = User.find_by_id(current_user)
-    instagram_token = user.identities.find_by_provider('instagram').social_token
-    instagram_user_id = user.identities.find_by_provider('instagram').uid
+      # user = User.find_by_id(current_user)
+      instagram_token = user.identities.find_by_provider('instagram').social_token
+      instagram_user_id = user.identities.find_by_provider('instagram').uid
 
-    Instagram.configure do |config|
-      config.client_id = ENV['instagram_client_id']
-      config.access_token = instagram_token
-    end
+      Instagram.configure do |config|
+        config.client_id = ENV['instagram_client_id']
+        config.access_token = instagram_token
+      end
 
     Instagram.user_media_feed.each do |individ_post|
       #also try to pull "liked media by the user"  Instagram.user_liked_media
@@ -79,6 +83,7 @@ class InstagramsController < ApplicationController
           # comment_score:
           # confirmed_comment:
           })
+          binding.pry
 
           individ_post.comments.data.first.from
 

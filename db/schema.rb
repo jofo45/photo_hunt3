@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007225300) do
+ActiveRecord::Schema.define(version: 20141008031137) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
@@ -71,13 +71,15 @@ ActiveRecord::Schema.define(version: 20141007225300) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tastemaker_id"
+    t.integer  "item_id"
   end
 
+  add_index "posts", ["item_id"], name: "index_posts_on_item_id"
   add_index "posts", ["tastemaker_id"], name: "index_posts_on_tastemaker_id"
 
   create_table "posts_tags", id: false, force: true do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
+    t.integer "post_id", null: false
+    t.integer "tag_id",  null: false
   end
 
   add_index "posts_tags", ["post_id", "tag_id"], name: "index_posts_tags_on_post_id_and_tag_id"
