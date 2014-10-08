@@ -12,6 +12,8 @@ class InstagramsController < ApplicationController
     # authorize! :read, @user
     #@posts = Post.all 
     @post = Post.find(params[:id])
+    # @comments = Comment.find_by(post_id: @post.id)
+    @comments = @post.comments
     #@guesses = Guess.find_by(post_id: @post.id)
     # @guess = Guess.new
     # if @book.update(book_params)
@@ -109,12 +111,10 @@ class InstagramsController < ApplicationController
           source: "Instagram",
           text_field: individ_comment.text,
           instagram_comment_id: individ_comment.id,
-          # post_id: postcommentbelongsto.id
           })
         postcommentbelongsto.comments << @comment
       end
     end
-
 
           # @comment = @post.comments.create({
           # instagram_created_time: individ_comment.created_time,
@@ -123,7 +123,6 @@ class InstagramsController < ApplicationController
           # comment_score:
           # confirmed_comment:
           # })
-    
   end
   end
   end
