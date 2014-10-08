@@ -11,12 +11,12 @@ class InstagramsController < ApplicationController
   def show
     # authorize! :read, @user
     @posts = Post.all 
-    @instagram = @posts.find(params[:id])
-    if @book.update(book_params)
-      redirect_to(@instagram)
-    else
-      render "edit"
-    end
+    @post = @posts.find(params[:id])
+    # if @book.update(book_params)
+    #   redirect_to(@instagram)
+    # else
+    #   render "edit"
+    # end
   end
 
 
@@ -79,6 +79,7 @@ class InstagramsController < ApplicationController
           # comment_score:
           # confirmed_comment:
           })
+
           individ_post.comments.data.first.from
 
         end
@@ -100,7 +101,6 @@ class InstagramsController < ApplicationController
       else
         @post = Post.find_by(instagram_post_id: individ_post.id)
         @post.update(likes: individ_post.likes.first.last)
-        # binding.pry
       end
      end
   end
