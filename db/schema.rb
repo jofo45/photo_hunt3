@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008154835) do
+ActiveRecord::Schema.define(version: 20141008204759) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20141008154835) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["tastemaker_id"], name: "index_comments_on_tastemaker_id"
+
+  create_table "guesses", force: true do |t|
+    t.integer  "guess_score",     default: 50
+    t.boolean  "confirmed_guess", default: false
+    t.integer  "item"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
