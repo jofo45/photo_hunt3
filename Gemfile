@@ -37,6 +37,8 @@ gem 'instagram'
 #creates environment which can be used to store keys/secrets.
 gem "figaro"
 
+gem 'simple_form'
+
 group :development do
 	gem 'pry' 
 	gem 'pry-rails'
