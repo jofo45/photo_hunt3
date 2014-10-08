@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008204759) do
+ActiveRecord::Schema.define(version: 20141008210044) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
@@ -36,7 +36,14 @@ ActiveRecord::Schema.define(version: 20141008204759) do
     t.string   "item"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.integer  "item_id"
   end
+
+  add_index "guesses", ["item_id"], name: "index_guesses_on_item_id"
+  add_index "guesses", ["post_id"], name: "index_guesses_on_post_id"
+  add_index "guesses", ["user_id"], name: "index_guesses_on_user_id"
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
