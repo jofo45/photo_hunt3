@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20141008154835) do
     t.string   "post_type"
     t.string   "instagram_post_created_time"
     t.integer  "likes"
+    t.integer  "comment_count"
     t.string   "instagram_post_id"
     t.string   "photo_standard_res"
     t.string   "photo_low_res"

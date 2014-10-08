@@ -68,10 +68,11 @@ class InstagramsController < ApplicationController
         instagram_post_id: individ_post.id, 
         photo_standard_res: individ_post.images.standard_resolution.url,
         photo_low_res: individ_post.images.low_resolution.url,
-        photo_thumbnail_res: individ_post.images.thumbnail.url
-        # comment_count: individ_post.comments['count']
+        photo_thumbnail_res: individ_post.images.thumbnail.url,
+        comment_count: individ_post.comments['count']
         })
         @post.save
+
         individ_post.tags.each do |individ_tag|
           @tag = @post.tags.create({
             tag_name: individ_tag
@@ -86,8 +87,8 @@ class InstagramsController < ApplicationController
       else
         @post = Post.find_by(instagram_post_id: individ_post.id)
         @post.update({
-          likes: individ_post.likes['count']
-          # comment_count: individ_post.comments['count']
+          likes: individ_post.likes['count'],
+          comment_count: individ_post.comments['count']
           })
       end
 
@@ -108,8 +109,9 @@ class InstagramsController < ApplicationController
           source: "Instagram",
           text_field: individ_comment.text,
           instagram_comment_id: individ_comment.id,
-          post_id: postcommentbelongsto.id
+          # post_id: postcommentbelongsto.id
           })
+        postcommentbelongsto.comments << @comment
       end
     end
 
