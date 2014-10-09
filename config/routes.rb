@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'guesses/index'
+
+  get 'guesses/create'
+
+  get 'guesses/update'
+
  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
  resources :items
  resources :users
  resources :instagrams
+ resources :guesses
+ 
 
  root to: "items#index"
  # get '/users/index', to: 'users#index'

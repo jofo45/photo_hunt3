@@ -16,3 +16,9 @@
             <%= render 'comments'%>
 			</div>
 </div>
+
+<%= simple_form_for @post do |f| %>
+  <%= f.association :guess %>
+  <%= f.association :roles %>
+  <%= f.button :submit %>
+<% end %>

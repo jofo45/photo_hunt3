@@ -1,2 +1,24 @@
 <h1>Edit Item / Product</h1>
-<%= render 'item_form' %>
+<%#= render 'item_form' %>
+
+
+
+	<div class = "col-md-5">
+		<%= image_tag @item.image %>
+	</div>
+	<div class = "col-md-7">
+		<%= simple_form_for @item  do |f| %>
+		  <%= f.input :name %>
+		  <%= f.input :classification, input_html: { maxlength: 30 } %>
+		  <%= f.input :price_web%>
+		  <%= f.input :url_link%>
+		  <%= f.input :image%>
+		  <%= f.input :currently_active %>
+		<% end %>
+	</div>
+
+
+
+
+
+

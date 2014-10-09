@@ -6,6 +6,7 @@ class InstagramsController < ApplicationController
     # authorize! :read, @user
     get_instagrams
     @posts = Post.all 
+    @guess = "john"
   end
 
   def show
@@ -16,6 +17,7 @@ class InstagramsController < ApplicationController
     @comments = @post.comments
     #@guesses = Guess.find_by(post_id: @post.id)
     # @guess = Guess.new
+
     # if @book.update(book_params)
     #   redirect_to(@instagram)
     # else
