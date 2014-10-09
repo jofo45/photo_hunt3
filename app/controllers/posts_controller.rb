@@ -23,6 +23,17 @@ class PostsController < ApplicationController
   end
 
 
+  def update
+    #why do i need to add this @item = Item.find(params[:id]).  Doesn't the @ make this a global varieble.
+    @post = Post.find(params[:id])
+    if @post.update post_params
+      redirect_to @post, notice: "Fashion item was updated!"
+    else
+      render 'edit'
+    end
+  end
+
+
   def get_instagrams
     # @importer = ImportInstagramUserFeed.new
     # @importer.call

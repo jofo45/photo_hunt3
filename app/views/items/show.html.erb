@@ -1,6 +1,27 @@
 <h1><%= @item.name %></h1>
 <p><%= @item.classification %></p>
 
-<%= link_to "Edit", edit_item_path(@item) %>
 
-<%= link_to 'Back', items_path %>
+    		<div class = "col-md-5">
+              <%= image_tag "#{@item.image}" %>
+    		</div>
+    		<div class = "col-md-7">
+  				<div class = "row">
+                    <%= simple_form_for @item do |f| %>
+                      <%= f.input :description %>
+                      <%= f.submit %>
+                      <%= link_to "Edit", edit_item_path(@item) %>
+                      <%= link_to 'Back', items_path %>
+                  </br></br></br></br></br></br>
+                    <% end %>
+  				</div>
+
+                <div class = "row">
+					<p><%= "Item name: #{@item.name}" %></p>
+					<p><%= "Item classification: #{@item.classification}" %></p>
+					<p><%= "Item brand: #{@item.brand}" %></p>
+					<p><%= "Item url: #{@item.url_link}" %></p>
+					<p><%= "You personallized URL for this item: http://localhost:3000/link/aslsadfasdfas" %></p>
+                </div>
+    		</div>
+    </br></br></br>

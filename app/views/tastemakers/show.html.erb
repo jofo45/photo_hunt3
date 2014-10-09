@@ -1,6 +1,22 @@
-<h1>Tastemakers#show</h1>
-<p>Find me in app/views/tastemakers/show.html.erb</p>
+<div class = "col-md-7">
+</br></br>
+<h1><%="Tastemaker: #{@tastemaker.tastemaker_full_name}"%></h1>
+<h2><%="Username: #{@tastemaker.tastemaker_instagram_username}"%></h1>
+<p> <%="Instagram ID: #{@tastemaker.tastemaker_instagram_id}"%> </p>
 
+</div>
+
+
+
+<div class = "col-md-5">
+</br></br>
+                    <p> <%= simple_form_for @tastemaker do |f| %>
+                        <p> <%= f.input :tastemaker_influence_score %> </p>
+                        <p> <%= f.input :fashion_tastemaker %> </p>
+                        <p> <%= f.input :elite_tastemaker %> </p>
+                        <p> <%= f.submit %> </p>
+                    <% end %>
+</div>
 
 	<% @posts.each do |indiv_post| %>
     	<div class ="row">
@@ -13,19 +29,10 @@
   				<div class = "row">
                     <p> <%= "Number of likes #{indiv_post.likes}"%> </p>
                     <p> <%= "Number of comments #{indiv_post.comment_count}"%> </p>
-                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p>
-                    <p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p>
-                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p>
-                    <p> <%= indiv_post.link%> </p>
   				</div>
 
                 <div class = "row">
-                    <p> <%= "Number of likes #{indiv_post.likes}"%> </p>
-                    <p> <%= "Number of comments #{indiv_post.comment_count}"%> </p>
-                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p>
-                    <p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p>
-                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p>
-                    <p> <%= indiv_post.link%> </p>
+                    <p> <%= link_to indiv_post.link, indiv_post.link%> </p>
                 </div>
 
 

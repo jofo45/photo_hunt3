@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'info/home'
+
   # get 'tastemakers/index'
   # get 'tastemakers/show'
   # get 'tastemakers/create'
