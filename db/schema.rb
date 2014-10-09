@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20141009035308) do
     t.integer  "tastemaker_counts_followed_by"
     t.string   "tastemaker_website"
     t.string   "tastemaker_bio"
-    t.integer  "tastemaker_influence_score"
+    t.integer  "tastemaker_influence_score",     default: 20
     t.boolean  "elite_tastemaker",               default: false
     t.boolean  "fashion_tastemaker",             default: false
     t.datetime "created_at"

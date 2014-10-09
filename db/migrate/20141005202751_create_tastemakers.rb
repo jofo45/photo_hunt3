@@ -12,7 +12,7 @@ class CreateTastemakers < ActiveRecord::Migration
 	  t.integer :tastemaker_counts_followed_by
 	  t.integer :tastemaker_website
 	  t.integer :tastemaker_bio
-	  t.integer :tastemaker_influence_score
+	  t.integer :tastemaker_influence_score, default: 20
 	  t.boolean :elite_tastemaker, default: false
 	  t.boolean :fashion_tastemaker, default: false
 
