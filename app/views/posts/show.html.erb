@@ -18,13 +18,12 @@
 			</div>
 </div>
 
-<%#= simple_form_for @post do |f| %>
-  <%#= f.association :tastemaker %>
-  <%#= f.button :submit %>
-
-
-<%= form_for @post do |f| %>
-  <%= f.input :elite_tastemaker %>
-  <%= f.input :fashion_tastemaker %>
+<%= simple_form_for @post do |f| %>
+  <%= f.association :tastemaker %>
   <%= f.button :submit %>
 <% end %>
+
+<%#= form_for @tastemaker(params) do |f| %>
+  <%#= f.input :elite_tastemaker %>
+  <%#= f.input :fashion_tastemaker %>
+  <%#= f.button :submit %>

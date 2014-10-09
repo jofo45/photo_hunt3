@@ -1,0 +1,36 @@
+<h1>Tastemakers#index</h1>
+<p>Find me in app/views/tastemakers/index.html.erb</p>
+
+
+
+	<table class="table table-striped table-bordered table-condensed table-hover">
+	    <thead>
+	        <tr>
+			  <th>Photo</th>
+	          <th>Name / ID</th>
+	          <th>Instagram ID</th>
+	          <th># of posts</th>
+	          <th>influence score</th>
+	          <th>fashion tastemaker</th>
+	          <th>elite tastemaker</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    <% @tastemakers.each do |indiv_tm| %>
+	        <tr>
+			  <td><%= link_to tastemaker_path(indiv_tm) do %> 
+              <%= image_tag "#{indiv_tm.tastemaker_profile_pict}" %>
+              <% end %> </td>
+	          <td><%= indiv_tm.tastemaker_instagram_full_name %> </br> 
+	          	<%= indiv_tm.tastemaker_instagram_username %> </td>
+	          <td><%= indiv_tm.tastemaker_counts_posts %></td>
+	          <td><%= indiv_tm.tastemaker_influence_score %></td>
+	          <td><%= indiv_tm.fashion_tastemaker %></td>
+	          <td><%= indiv_tm.elite_tastemaker %></td>
+	          <td><%= link_to 'Show', tastemaker_path(indiv_tm) %></td>
+	          <td><%= link_to 'Edit', edit_tastemaker_path(indiv_tm) %></td>
+	          <td><%= link_to 'Destroy', tastemaker_path(indiv_tm), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        </tr>
+	        <%end%>
+	    </tbody>
+	</table>

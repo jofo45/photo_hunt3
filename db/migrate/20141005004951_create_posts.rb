@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :link
       t.string :post_type
+      t.string :post_description
       t.string :instagram_post_created_time
       t.integer :likes
       t.integer :comment_count

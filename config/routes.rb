@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
 
-  get 'guesses/index'
-
-  get 'guesses/create'
-
-  get 'guesses/update'
+  # get 'tastemakers/index'
+  # get 'tastemakers/show'
+  # get 'tastemakers/create'
+  # get 'tastemakers/new'
+  # get 'posts/index'
+  # get 'posts/show'
+  # get 'posts/create'
+  # get 'posts/new'
+  # get 'guesses/index'
+  # get 'guesses/create'
+  # get 'guesses/update'
 
  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
+
+ resources :tastemakers
+ resources :posts
  resources :items
  resources :users
  resources :instagrams

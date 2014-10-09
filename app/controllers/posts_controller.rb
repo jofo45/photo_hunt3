@@ -1,13 +1,10 @@
-class InstagramsController < ApplicationController
-
-#Instagram.methods       add binding.pry below in the action below and then enter the Instagram.method in the pry controller.
+class PostsController < ApplicationController
 
   def index
     # authorize! :read, @user
     get_instagrams
     @posts = Post.all 
     @guess = Guess.new
-
 
   end
 
@@ -18,14 +15,11 @@ class InstagramsController < ApplicationController
     @tastemaker = @post.tastemaker
     # @comments = Comment.find_by(post_id: @post.id)
     @comments = @post.comments
+        # params.require(post_id: params[:post_id])
+
     #@guesses = Guess.find_by(post_id: @post.id)
     # @guess = Guess.new
 
-    # if @book.update(book_params)
-    #   redirect_to(@instagram)
-    # else
-    #   render "edit"
-    # end
   end
 
 

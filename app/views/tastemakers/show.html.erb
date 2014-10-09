@@ -1,0 +1,58 @@
+<h1>Tastemakers#show</h1>
+<p>Find me in app/views/tastemakers/show.html.erb</p>
+
+
+	<% @posts.each do |indiv_post| %>
+    	<div class ="row">
+    		<div class = "col-md-5">
+    				<%= link_to instagram_path(indiv_post) do %> 
+              <%= image_tag "#{indiv_post.photo_standard_res}" %>
+            <% end %>
+    		</div>
+    		<div class = "col-md-7">
+  				<div class = "row">
+                    <p> <%= "Number of likes #{indiv_post.likes}"%> </p>
+                    <p> <%= "Number of comments #{indiv_post.comment_count}"%> </p>
+                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p>
+                    <p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p>
+                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p>
+                    <p> <%= indiv_post.link%> </p>
+  				</div>
+
+                <div class = "row">
+                    <p> <%= "Number of likes #{indiv_post.likes}"%> </p>
+                    <p> <%= "Number of comments #{indiv_post.comment_count}"%> </p>
+                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_id%> </p>
+                    <p> <%= indiv_post.tastemaker.tastemaker_full_name%> </p>
+                    <p> <%= indiv_post.tastemaker.tastemaker_instagram_username%> </p>
+                    <p> <%= indiv_post.link%> </p>
+                </div>
+
+
+  				<div class = "row"> 
+            <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>Comment</th>
+                        <th>Username</th>
+                        <th>Confirmed?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% indiv_post.comments.each do |individ_comment| %>
+                    <tr>
+                        <td> <%= individ_comment.text_field%>       </td>
+                        <td> <%= individ_comment.tastemaker.tastemaker_instagram_username%> </td>
+                        <td> <%= individ_comment.confirmed_comment%>  </td>
+                    </tr>
+                    <%end%>
+                </tbody>
+            </table>
+
+            <%#= render 'comments'%> 
+  				</div>
+    		</div>
+    	</div>
+    </br></br></br>
+<%end%>
+<%= @posts.count%>

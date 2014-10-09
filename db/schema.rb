@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008210044) do
+ActiveRecord::Schema.define(version: 20141009035308) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20141008210044) do
   create_table "posts", force: true do |t|
     t.string   "link"
     t.string   "post_type"
+    t.string   "post_description"
     t.string   "instagram_post_created_time"
     t.integer  "likes"
     t.integer  "comment_count"
