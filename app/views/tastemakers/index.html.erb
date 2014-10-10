@@ -9,6 +9,7 @@
 			  <th>Photo</th>
 	          <th>Name / ID</th>
 	          <th># of posts</th>
+	          <th># of comments</th>
 	          <th>influence score</th>
 	          <th>fashion tastemaker</th>
 	          <th>elite tastemaker</th>
@@ -23,7 +24,8 @@
               <% end %> </td>
 	          <td><%= indiv_tm.tastemaker_full_name %> </br> 
 	          	<%= indiv_tm.tastemaker_instagram_username %> </td>
-	          <td><%= indiv_tm.tastemaker_counts_posts %></td>
+	          <td><%= indiv_tm.posts.count %></td>
+	          <td><%= indiv_tm.comments.count %></td>
 	          <td><%= f.input :tastemaker_influence_score, label: false %></td>
 	          <td><%= f.input :fashion_tastemaker, label: false %></td>
 	          <td><%= f.input :elite_tastemaker, label: false, style:"padding-left: 40px;" %></td>

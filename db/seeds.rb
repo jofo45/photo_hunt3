@@ -13,20 +13,24 @@ Item.create! image: "http://www.peterglenn.com/sites/default/files/imagecache/pr
   classification: 'pants',
   description: 'good pants',
   name: 'nice pants',
-  brand: 'brand of pants'
+  brand: 'brand of pants',
+  url_link: "http://www.peterglenn.com/product/nils-lauren-insulated-ski-pant-womens"  
 
-Item.create! image: "https://cdn.shopify.com/s/files/1/0251/5984/products/shirt3_grande_grande.jpg?v=1382430194",
+
+Item.create! image: "http://slimages.macys.com/is/image/MCY/products/0/optimized/1067270_fpx.tif",
   price_web: 100,
   classification: 'shirt',
   description: 'good shirt',
   name: 'nice shirt',
-  brand: 'brand of shirt'
+  brand: 'brand of shirt',
+  url_link: "http://www1.macys.com/shop/product/karl-lagerfeld-top-scoop-neck-long-sleeve-printed-tee?ID=629564"
 
 Item.create! image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTbq-Hup2qFa3VDH2bDSrjFYcuVHLxor2F6-dnLsw17uJCgIKzG1g",
   price_web: 50,
   classification: 'accessory',
   description: 'good necklace',
   name: 'nice bracelet',
-  brand: 'Kendra Scott'
+  brand: 'Kendra Scott',
+  url_link: "http://www.cnn.com"
 
 puts 'Done adding items'

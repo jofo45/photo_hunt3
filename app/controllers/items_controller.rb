@@ -36,6 +36,26 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+
+    if @item.urls.count > 0
+       @personalized_item_link = @item.urls.first
+
+      else
+          @userkey = current_user.id
+          @hash = rand(50000..1000000)
+          @hash_code = (@hash.to_s + "UUUUU".to_s + @userkey.to_s)
+          @fulllink = ("http://localhost:3000/".to_s + @hash_code.to_s)
+          # safe_url_params = params.require(:url).permit(:link)
+
+          @personalized_item_link = @item.urls.create!({
+              hash_code: @hash_code,
+              user_id: current_user.id,
+              link: @fulllink
+              })
+          # @url.save
+        current_user.urls << @personalized_item_link
+        @personalized_item_link.update({forwarding_link: @item.url_link})
+      end
   end
 
 

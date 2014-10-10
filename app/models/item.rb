@@ -19,4 +19,6 @@
 class Item < ActiveRecord::Base
 	has_and_belongs_to_many :posts
 	has_many :guesses 	
+	has_many :urls
+
 end

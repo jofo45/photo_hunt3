@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'urls/new'
+
+  get 'urls/create'
+
+  get 'urls/show'
+
   get 'info/home'
 
   # get 'tastemakers/index'
@@ -18,6 +24,7 @@ Rails.application.routes.draw do
 
 
  resources :tastemakers
+ resources :urls
  resources :posts
  resources :items
  resources :users
@@ -27,6 +34,11 @@ Rails.application.routes.draw do
 
  root to: "items#index"
  # get '/users/index', to: 'users#index'
+
+
+get '/:code', to: 'urls#redirector'
+get '/:code/preview', to: 'urls#preview'
+
 
  get "/get_instagram" => "instagrams#get_instagrams"
  # get "/show_instagram" => "instagrams#index"

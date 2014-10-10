@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009035308) do
+ActiveRecord::Schema.define(version: 20141009222124) do
 
   create_table "comments", force: true do |t|
     t.string   "instagram_created_time"
@@ -123,6 +123,19 @@ ActiveRecord::Schema.define(version: 20141009035308) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "urls", force: true do |t|
+    t.string   "link"
+    t.string   "hash_code"
+    t.string   "forwarding_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "item_id"
+  end
+
+  add_index "urls", ["item_id"], name: "index_urls_on_item_id"
+  add_index "urls", ["user_id"], name: "index_urls_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

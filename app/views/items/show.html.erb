@@ -21,7 +21,10 @@
 					<p><%= "Item classification: #{@item.classification}" %></p>
 					<p><%= "Item brand: #{@item.brand}" %></p>
 					<p><%= "Item url: #{@item.url_link}" %></p>
-					<p><%= "You personallized URL for this item: http://localhost:3000/link/aslsadfasdfas" %></p>
+          <p><%= "Your personallized URL for this item: "%>
+            <%= link_to "#{@personalized_item_link.link}", "#{@personalized_item_link.forwarding_link}" %></p>
+
+
                 </div>
     		</div>
     </br></br></br>

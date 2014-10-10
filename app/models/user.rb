@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_REGEX = /\Achange@me/
   has_many :identities
   has_many :guesses
+  has_many :urls
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
